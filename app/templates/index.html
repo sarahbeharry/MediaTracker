@@ -1,0 +1,82 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>All media</h1>
+
+{% if media_list %}
+	
+<table class="table table-striped table-hover">
+<thead>
+<tr>
+	<th>Name</th>
+	<th>Current episode</th>
+	<th>Notes</th>
+	<th></th>
+</tr>
+</thead>
+<tbody>
+{% for m in media_list %}
+{% if m.notes %}
+<tr>
+{% else %}
+<tr>
+{% endif %}	
+
+<td>
+<a href="{{ url_for('media_details', media_id=m.id) }}">{{ m.name }}</a>
+</td>
+<td>{{'%.12g' % m.current_episode.episode_number if m.current_episode}}</td>
+<td><div {{ "class=text-danger" if "sarah" in m.notes.lower() else "class=text-success" if "tristan" in m.notes.lower() }}>{{ m.notes }}</div></td>
+<td style="text-align: right;"> 
+
+<a href="{{ url_for('increment_episode', media_id = m.id) }}" class="btn btn-sm btn-info" title="Click to increment episode number">
+<span class="glyphicon glyphicon-play" aria-hidden="true"/>
+</a>
+
+<a href="{{ url_for('delete_media', media_id = m.id) }}" class="btn btn-sm btn-danger" title="Click to delete media">
+<span class="glyphicon glyphicon-eject" aria-hidden="true"/>
+</a>
+
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% else %}
+	<p> No media listed yet...</p>
+{% endif %}
+
+<form action="{{ url_for('add_media')}}" method="post" name="addMedia" autocomplete="off">
+	{{ mediaForm.hidden_tag() }}
+	<h3>Add a new series:</h3>
+
+	<div class="control-group">
+        <label class="control-label" for="name">Name:</label>
+        <div class="controls">
+                {{ mediaForm.name(class="form-control") }}
+                {% for error in mediaForm.name.errors %}
+                <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
+        </div>
+        </div>
+
+	<div class="control-group">
+        <label class="control-label" for="notes">Notes:</label>
+        <div class="controls">
+                {{ mediaForm.notes(class="form-control") }}
+                {% for error in mediaForm.notes.errors %}
+                <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
+
+        </div>
+        </div>
+
+	<br/>
+	<p><input type="submit" class="btn btn-primary" value="Add new media"></p>
+
+</form>
+
+{% endblock %}
