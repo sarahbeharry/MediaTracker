@@ -1,7 +1,11 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+if os.path.exists('./dev'):
+	SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost/mediatracker'
+else:
+	SQLALCHEMY_DATABASE_URI = 'mysql://root:serenity@localhost/mediatracker'
+
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
 WTF_CSRF_ENABLED = True

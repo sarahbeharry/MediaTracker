@@ -27,7 +27,7 @@
           <a class="navbar-brand" href="#">MediaTracker</a>
         </div>
 
-        <div style="" aria-expanded="false" class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+        <div style="" aria-expanded="false" class="navbar-collapse collapse in" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="{{ url_for('index') }}">Media</a></li>
             <li><a href="{{ url_for('view_tags') }}">Tags</a></li> 

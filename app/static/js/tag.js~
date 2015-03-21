@@ -1,0 +1,7 @@
+$(document).ready(function(){
+    $("#colour_sample").click(function() {        
+        newColour = $("#colour").val();
+        alert(newColour);
+        $("#colour_sample").css({"border-left": "20px solid " + newColour});
+    });
+});

@@ -5311,7 +5311,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-body {
   padding: 15px;
-  background-color: #708498;
+  background-color: #8798a8;
   
 }
 .panel-heading {
