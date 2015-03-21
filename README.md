@@ -9,3 +9,4 @@ Current functionality:
 - Add series/films to list
 - Give series some episodes
 - Track progress through series
+- Tag series
