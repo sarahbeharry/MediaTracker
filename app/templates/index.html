@@ -6,9 +6,39 @@
 <h1>All media
 {% if filter_tag %}
 tagged "{{ filter_tag.name }}"
-<a href="{{ url_for('index') }}">[Clear filters]</a>
+<a href="{{ url_for('index') }}{% if sort %}?sort={{ sort }}{% endif %}">[Clear filter]</a>
 {% endif %}
 </h1>
+
+<h4>
+Sort by:
+</h4>
+
+<ul class="nav nav-pills">
+  <li 
+    {% if sort == "name" %}
+        class="active" 
+    {% endif %}
+  ><a href="{{ url_for('index') }}?sort=name{% if filter_tag %}&tag={{ filter_tag.id }}{% endif %}
+  ">Name</a>
+  </li>
+  <li 
+    {% if sort == "dateModified" or not sort %}
+        class="active" 
+    {% endif %}
+  ><a href="{{ url_for('index') }}?sort=dateModified{% if filter_tag %}&tag={{ filter_tag.id }}{% endif %}
+  ">Date modified</a>
+  </li>
+  <li 
+    {% if sort == "dateAdded" %}
+        class="active"  
+    {% endif %}
+  ><a href="{{ url_for('index') }}?sort=dateAdded{% if filter_tag %}&tag={{ filter_tag.id }}{% endif %}
+  ">Date added</a>
+  </li>
+</ul>
+
+<hr>
 
 {% if media_list %}
 {% for m in media_list %}
@@ -20,7 +50,7 @@ tagged "{{ filter_tag.name }}"
   </div>
   <div style="float: right; width: 50px;">
     <a href="
-    {{ url_for('increment_episode', media_id = m.id) }}{% if filter_tag %}?tag={{ filter_tag.id }}{% endif %}" 
+    {{ url_for('increment_episode', media_id = m.id) }}{% if filter_tag %}?tag={{ filter_tag.id }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}" 
     class="btn btn-info" 
     title="Click to increment episode number">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
@@ -43,7 +73,7 @@ tagged "{{ filter_tag.name }}"
 
 <div id="tags{{m.id}}">
 {% for t in m.tags %}
-<a href= "{{ url_for ('index')}}?tag={{t.id}}"><span class="btn btn-sm btn-default"
+<a href= "{{ url_for ('index')}}?tag={{t.id}}{% if sort %}&sort={{ sort }}{% endif %}"><span class="btn btn-sm btn-default"
         style="border-left: 20px solid {{ t.colour }}; border-radius: 20px;">
     <b>{{ t.name }}</b></span></a>
 
@@ -57,35 +87,5 @@ tagged "{{ filter_tag.name }}"
 {% else %}
 	<p> No media listed yet...</p>
 {% endif %}
-
-<form action="{{ url_for('add_media')}}" method="post" name="addMedia" autocomplete="off">
-	{{ mediaForm.hidden_tag() }}
-	<h3>Add a new series:</h3>
-
-	<div class="control-group">
-        <label class="control-label" for="name">Name:</label>
-        <div class="controls">
-                {{ mediaForm.name(class="form-control") }}
-                {% for error in mediaForm.name.errors %}
-                <span class="text-danger">[{{ error }}]</span>
-                {% endfor %}
-        </div>
-        </div>
-
-	<div class="control-group">
-        <label class="control-label" for="notes">Notes:</label>
-        <div class="controls">
-                {{ mediaForm.notes(class="form-control") }}
-                {% for error in mediaForm.notes.errors %}
-                <span class="text-danger">[{{ error }}]</span>
-                {% endfor %}
-
-        </div>
-        </div>
-
-	<br/>
-	<p><input type="submit" class="btn btn-primary" value="Add new media"></p>
-
-</form>
 
 {% endblock %}

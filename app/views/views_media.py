@@ -5,6 +5,12 @@ from ..forms import *
 from ..controllers import media_controller
 from . import views_main
 
+@app.route('/media', methods=['GET'])
+def enter_add_media():
+    form = create_new_media_form()
+    return render_template('add_media.html',
+                            mediaForm =  form)
+
 @app.route('/media', methods=['POST'])
 def add_media():
 	form = create_new_media_form()
@@ -12,12 +18,11 @@ def add_media():
 		media = models.Media(name = form.name.data, notes = form.notes.data)
 		media_controller.add_media(media)
 		flash('Added {0}'.format(media.name))
-		return redirect(url_for('index'))
+		return redirect(url_for('media_details', media_id = media.id))
 	else:
 		flash('Some of your fields need fixing!')
-		return render_template('index.html',
-					mediaForm = form,
-					media_list = media_controller.get_all_media())
+		return render_template('add_media.html',
+					mediaForm = form)
 
 @app.route('/media/<media_id>', methods=['GET'])
 def media_details(media_id):
@@ -28,7 +33,7 @@ def media_details(media_id):
 		mediaForm = create_new_media_form(media)
 		mediaForm.name.data = media.name
 		mediaForm.current_episode_id.data = media.current_episode
-		mediaForm.notes.data = media.notes		
+		mediaForm.notes.data = media.notes
 		
 		return render_template('media_details.html',
 					media = media,

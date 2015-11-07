@@ -8,15 +8,14 @@ from ..controllers import media_controller, tag_controller
 @app.route('/', methods=['GET', 'POST'])
 def index():
     tag_id = request.args.get('tag')
-    if tag_id:
-        media_list = media_controller.get_all_media(tag_id)
-    else:
-        media_list = media_controller.get_all_media()
+    sortcode = request.args.get('sort')
+    media_list = media_controller.get_all_media(tag_id, sortcode)
     form = create_new_media_form()
     return render_template('index.html', 
                 media_list = media_list,
                 mediaForm = form,
-                filter_tag = tag_controller.get_tag(tag_id) if tag_id else None)
+                filter_tag = tag_controller.get_tag(tag_id) if tag_id else None,
+                sort = sortcode)
 
 # Helper functions
 def create_new_media_form(media = None):

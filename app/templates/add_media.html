@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="{{ url_for('add_media')}}" method="post" name="addMedia" autocomplete="off">
+	{{ mediaForm.hidden_tag() }}
+	<h3>Add a new series:</h3>
+
+	<div class="control-group">
+        <label class="control-label" for="name">Name:</label>
+        <div class="controls">
+                {{ mediaForm.name(class="form-control") }}
+                {% for error in mediaForm.name.errors %}
+                <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
+        </div>
+        </div>
+
+	<div class="control-group">
+        <label class="control-label" for="notes">Notes:</label>
+        <div class="controls">
+                {{ mediaForm.notes(class="form-control") }}
+                {% for error in mediaForm.notes.errors %}
+                <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
+
+        </div>
+        </div>
+
+	<br/>
+	<p><input type="submit" class="btn btn-primary" value="Add new media"></p>
+
+</form>
+{% endblock %}
