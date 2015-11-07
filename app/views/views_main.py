@@ -1,7 +1,8 @@
+from __future__ import unicode_literals
 from app import app, models
 from flask import render_template, redirect, flash, url_for, request
-from .forms import *
-from . import media_controller, tag_controller
+from ..forms import *
+from ..controllers import media_controller, tag_controller
 
 
 @app.route('/', methods=['GET', 'POST'])

@@ -1084,7 +1084,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Palatino, "Palatino Linotype", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.42857143;
   color: #ebebeb;
@@ -5311,7 +5311,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-body {
   padding: 15px;
-  background-color: #8798a8;
+  background-color: #708498;
   
 }
 .panel-heading {

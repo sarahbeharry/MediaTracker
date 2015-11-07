@@ -2,9 +2,9 @@ from app import db
 
 class Media(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256), index=True, unique=True)
+    name = db.Column(db.Unicode(256), index=True, unique=True)
     current_episode_id = db.Column(db.Integer, db.ForeignKey('episode.id'))
-    notes = db.Column(db.String(256))
+    notes = db.Column(db.Unicode(256))
 
     episodes = db.relationship('Episode', 
                                 backref='media',
@@ -31,8 +31,8 @@ class Episode(db.Model):
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256), index=True, unique=True)
-    colour = db.Column(db.String(7))
+    name = db.Column(db.Unicode(256), index=True, unique=True)
+    colour = db.Column(db.Unicode(7))
     tagged_media = db.relationship('Media',
                             secondary='media_tag')
     

@@ -1,7 +1,9 @@
+from __future__ import unicode_literals
 from app import app, models
 from flask import render_template, redirect, flash, url_for, request
-from .forms import *
-from . import media_controller, views_main
+from ..forms import *
+from ..controllers import media_controller
+from views import views_main
 
 @app.route('/media', methods=['POST'])
 def add_media():
