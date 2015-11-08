@@ -2,8 +2,10 @@
     padding: 3px 10px 3px 10px;
     border-radius: 20px;
     margin: 3px;
+    white-space: pre-wrap;
 }
 
 .tagColourElement {
     font-size: 1.5em;
+    padding: 0px 4px 0px 0px;
 }

@@ -43,9 +43,9 @@ Sort by:
 {% if media_list %}
 {% for m in media_list %}
 
-<div class="panel panel-default">
+<div class="panel panel-default" >
   <div class="panel-heading">
-  <div style="float: left; width: 60%;">
+  <div style="float: left; width: 50%;">
   <h4>{{ m.name }}</h4>
   </div>
   <div style="float: right; width: 50px;">
@@ -71,16 +71,14 @@ Sort by:
 
 <p> {{ m.notes }} </p>
 
-<div id="tags{{m.id}}">
+<div id="tags{{m.id}}" style="clear: both;">
 {% for t in m.tags %}
 <!--<a href= "{{ url_for ('index')}}?tag={{t.id}}{% if sort %}&sort={{ sort }}{% endif %}"><span class="btn btn-sm btn-default"-->
 <!--        style="border-left: 20px solid {{ t.colour }}; border-radius: 20px;">-->
 <!--    <b>{{ t.name }}</b></span></a>-->
 <a href="{{ url_for ('index')}}?tag={{t.id}}{% if sort %}&sort={{ sort }}{% endif %}"
-            class="btn btn-default" style="padding: 3px 10px 3px 10px; margin: 3px; border-radius: 20px;">
-        <span style="color: {{ t.colour }}; font-size: 1.5em" aria-hidden="true">☗</span>
-        <b>{{ t.name }}</b>
-    </a>
+            class="btn btn-default tag">
+        <span class="tagColourElement" style="color: {{ t.colour }};" aria-hidden="true">◖</span><b>{{ t.name }}</b></a>
 {% endfor %}
 </div>
   </div>
