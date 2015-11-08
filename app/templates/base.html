@@ -8,6 +8,7 @@
         <title>Welcome to MediaTracker</title>
         {% endif %}
     <link href="{{ url_for('index') }}static/css/bootstrap_custom.css" rel="stylesheet">
+    <link href="{{ url_for('index') }}static/css/custom.css" rel="stylesheet">
     <link href="{{ url_for('index') }}static/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet">
 </head> 
 <body>  
@@ -34,7 +35,7 @@
               <li><a href="{{ url_for('view_tags') }}">Edit tags</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a>v1.2</a></li>
+            <li><a style="text-align: right;">v1.2</a></li>
           </ul>
         </div>
       </div>
