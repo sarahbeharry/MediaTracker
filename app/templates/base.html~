@@ -30,6 +30,7 @@
 
         <div style="" aria-expanded="false" class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+              <li><a href="{{ url_for('add_media') }}">Add new media</a></li>
               <li><a href="{{ url_for('view_tags') }}">Edit tags</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
