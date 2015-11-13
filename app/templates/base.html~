@@ -33,9 +33,9 @@
           <ul class="nav navbar-nav">
               <li><a href="{{ url_for('add_media') }}">Add new media</a></li>
               <li><a href="{{ url_for('view_tags') }}">Edit tags</a></li>
-              <li><a href="{{ url_for('view_bugs') }}">Bug reporting</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('view_bugs') }}">Bug reporting</a></li>
             <li><a style="text-align: right;">v1.3</a></li>
           </ul>
         </div>

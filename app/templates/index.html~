@@ -6,9 +6,13 @@
 <h1>All media
 {% if filter_tag %}
 tagged "{{ filter_tag.name }}"
-<a href="{{ url_for('index') }}{% if sort %}?sort={{ sort }}{% endif %}">[Clear filter]</a>
-{% endif %}
+<div style="float: right;">
+<a class="btn btn-default" href="{{ url_for('index') }}{% if sort %}?sort={{ sort }}{% endif %}">Clear tag filter</a>
+</div>
 </h1>
+
+<br style="clear: left;" />
+{% endif %}
 
 <h4>
 Sort by:
@@ -73,9 +77,7 @@ Sort by:
 
 <div id="tags{{m.id}}" style="clear: both;">
 {% for t in m.tags %}
-<!--<a href= "{{ url_for ('index')}}?tag={{t.id}}{% if sort %}&sort={{ sort }}{% endif %}"><span class="btn btn-sm btn-default"-->
-<!--        style="border-left: 20px solid {{ t.colour }}; border-radius: 20px;">-->
-<!--    <b>{{ t.name }}</b></span></a>-->
+
 <a href="{{ url_for ('index')}}?tag={{t.id}}{% if sort %}&sort={{ sort }}{% endif %}"
             class="btn btn-default tag"><span class="tagColourElement" style="color: {{ t.colour }};" aria-hidden="true">&#9751;</span><b>{{ t.name }}</b></a>
 {% endfor %}

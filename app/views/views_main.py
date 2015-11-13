@@ -15,9 +15,21 @@ def index():
                 media_list = media_list,
                 mediaForm = form,
                 filter_tag = tag_controller.get_tag(tag_id) if tag_id else None,
-                sort = sortcode)
+                sort = sortcode,
+                filter_sort_preserve = preserve_sort_and_tag(tag_id, sortcode))
 
 # Helper functions
+def preserve_sort_and_tag(tag_id, sortcode):
+    if tag_id and not sortcode:
+        return "?tag=" + tag_id
+    elif not tag_id and sortcode:
+        return "?sort=" + sortcode
+    elif tag_id and sortcode:
+        return "?tag=" + tag_id + "&sort=" + sortcode
+    else:
+        return ""
+    
+
 def create_new_media_form(media = None):
     form = MediaForm()
      # Need to populate episode dropdown choices, otherwise null error during validation

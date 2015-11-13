@@ -6,9 +6,13 @@
 <h1>All media
 {% if filter_tag %}
 tagged "{{ filter_tag.name }}"
-<a href="{{ url_for('index') }}{% if sort %}?sort={{ sort }}{% endif %}">[Clear filter]</a>
-{% endif %}
+<div style="float: right;">
+<a class="btn btn-default" href="{{ url_for('index') }}{% if sort %}?sort={{ sort }}{% endif %}">Clear tag filter</a>
+</div>
 </h1>
+
+<br style="clear: left;" />
+{% endif %}
 
 <h4>
 Sort by:
@@ -50,7 +54,7 @@ Sort by:
   </div>
   <div style="float: right; width: 50px;">
     <a href="
-    {{ url_for('increment_episode', media_id = m.id) }}{% if filter_tag %}?tag={{ filter_tag.id }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}" 
+    {{ url_for('increment_episode', media_id = m.id) }}{{ filter_sort_preserve }}" 
     class="btn btn-info" 
     title="Click to increment episode number">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
