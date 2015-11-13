@@ -26,17 +26,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ url_for('index') }}">MediaTracker v1.2</a>
+          <a class="navbar-brand" href="{{ url_for('index') }}">MediaTracker</a>
         </div>
 
         <div style="" aria-expanded="false" class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
               <li><a href="{{ url_for('add_media') }}">Add new media</a></li>
               <li><a href="{{ url_for('view_tags') }}">Edit tags</a></li>
+              <li><a href="{{ url_for('view_bugs') }}">Bug reporting</a></li>
           </ul>
-<!--          <ul class="nav navbar-nav navbar-right">-->
-<!--            <li><a style="text-align: right;">v1.2</a></li>-->
-<!--          </ul>-->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a style="text-align: right;">v1.3</a></li>
+          </ul>
         </div>
       </div>
     </nav>

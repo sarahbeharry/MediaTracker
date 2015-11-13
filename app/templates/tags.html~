@@ -22,7 +22,7 @@ Add new tag
 
 <p>
     <a href="{{ url_for('tag_details', tag_id=t.id) }}"
-            class="btn btn-default tag"><span class="tagColourElement" style="color: {{ t.colour }};" aria-hidden="true">&#9608;</span><b>{{ t.name }}</b></a>
+            class="btn btn-default tag"><span class="tagColourElement" style="color: {{ t.colour }};" aria-hidden="true">&#9751;</span><b>{{ t.name }}</b></a>
 </p>
 
 {% endfor %}

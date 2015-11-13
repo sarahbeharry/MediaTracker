@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from app import app, models
 from flask import render_template, redirect, flash, url_for, request
-from ..forms import *
+from ..forms import MediaForm
 from ..controllers import media_controller
 from . import views_main
 
@@ -18,7 +18,7 @@ def add_media():
 		media = models.Media(name = form.name.data, notes = form.notes.data)
 		media_controller.add_media(media)
 		flash('Added {0}'.format(media.name))
-		return redirect(url_for('media_details', media_id = media_id))
+		return redirect(url_for('media_details', media_id = media.id))
 	else:
 		flash('Some of your fields need fixing!')
 		return render_template('add_media.html',

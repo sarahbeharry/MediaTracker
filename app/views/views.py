@@ -1,6 +1,6 @@
 from app import app, models
 from flask import render_template, redirect, flash, url_for
-from ..forms import *
+from ..forms import MediaForm
 from ..controllers import media_controller
 
 

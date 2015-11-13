@@ -41,3 +41,7 @@ class Media_Tag(db.Model):
     media_id = db.Column('media_id', db.Integer, db.ForeignKey('media.id'), primary_key = True)
     tag_id = db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key = True)
 
+class Bug(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Unicode(256), nullable=False)
+    description = db.Column(db.Unicode(1024), nullable=False)

@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, SelectField, SelectMultipleField, widgets
+from wtforms import StringField, SelectField, SelectMultipleField, TextAreaField, widgets
 from wtforms.validators import DataRequired, Length, Regexp
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.fields.core import DecimalField as _DecimalField
@@ -32,3 +32,7 @@ class EpisodeGenerationForm(Form):
 class TagEditForm(Form):
     name = StringField('name', validators=[Length(min=1, max=256), DataRequired()])
     colour = StringField('colour', validators=[Regexp('^#[A-Fa-f0-9]{6}$', flags=0, message='Invalid colour hex code.'), DataRequired()])
+    
+class BugEditForm(Form):
+    title = StringField('title', validators=[Length(min=1, max=256), DataRequired()])
+    description = TextAreaField('description', validators=[Length(min=1, max=1024), DataRequired()])

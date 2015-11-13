@@ -21,7 +21,7 @@ class MediaForm(Form):
 	name = StringField('name', validators=[Length(min=1, max=256), DataRequired()])
 	notes = StringField('notes', validators=[Length(min=0, max=256)])
 	current_episode_id = QuerySelectField(get_label=lambda e: '%.12g' % e.episode_number, allow_blank=True, blank_text='None')
-	tags = MultiCheckboxField('tags' coerce=int)
+	tags = MultiCheckboxField('tags', coerce=int)
 
 class EpisodeForm(Form):
 	number = DecimalField('episode_number', validators=[DataRequired()])
@@ -32,3 +32,7 @@ class EpisodeGenerationForm(Form):
 class TagEditForm(Form):
     name = StringField('name', validators=[Length(min=1, max=256), DataRequired()])
     colour = StringField('colour', validators=[Regexp('^#[A-Fa-f0-9]{6}$', flags=0, message='Invalid colour hex code.'), DataRequired()])
+    
+class BugEditForm(Form):
+    title = StringField('title', validators=[Length(min=1, max=256), DataRequired()])
+    description = TextAreaField('description', validators=[Length(min=1, max=1024), DataRequired()])

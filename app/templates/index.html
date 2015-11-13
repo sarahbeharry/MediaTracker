@@ -73,11 +73,9 @@ Sort by:
 
 <div id="tags{{m.id}}" style="clear: both;">
 {% for t in m.tags %}
-<!--<a href= "{{ url_for ('index')}}?tag={{t.id}}{% if sort %}&sort={{ sort }}{% endif %}"><span class="btn btn-sm btn-default"-->
-<!--        style="border-left: 20px solid {{ t.colour }}; border-radius: 20px;">-->
-<!--    <b>{{ t.name }}</b></span></a>-->
+
 <a href="{{ url_for ('index')}}?tag={{t.id}}{% if sort %}&sort={{ sort }}{% endif %}"
-            class="btn btn-default tag"><span class="tagColourElement" style="color: {{ t.colour }};" aria-hidden="true">&#9673;</span><b>{{ t.name }}</b></a>
+            class="btn btn-default tag"><span class="tagColourElement" style="color: {{ t.colour }};" aria-hidden="true">&#9751;</span><b>{{ t.name }}</b></a>
 {% endfor %}
 </div>
   </div>

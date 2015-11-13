@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="{{ url_for('index') }}static/js/confirm_delete.js"></script>
+
+<form action="{{ url_for('add_bug')}}" method="post" name="delete_bug" autocomplete="off">
+	{{ bug_form.hidden_tag() }}
+	<h3>Report a bug (or request a feature!)</h3>
+
+	<div class="control-group">
+        <label class="control-label" for="title">Title:</label>
+        <div class="controls">
+                {{ bug_form.title(class="form-control") }}
+                {% for error in bug_form.title.errors %}
+                <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
+        </div>
+        </div>
+
+	<div class="control-group">
+        <label class="control-label" for="description">Description:</label>
+        <div class="controls">
+                {{ bug_form.description(class="form-control") }}
+                {% for error in bug_form.description.errors %}
+                <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
+
+        </div>
+        </div>
+
+	<br/>
+	<p><input type="submit" class="btn btn-primary" value="Submit"></p>
+
+</form>
+
+<h1>All bugs</h1>
+
+{% if bug_list %}
+
+{% for b in bug_list %}
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <div style="float: left; width: 50%;">{{ b.title }}</div>
+        <div style="float: right; width: 60px;">
+        <a href="{{ url_for('delete_bug', bug_id = b.id) }}" 
+        class="btn btn-danger confirm-delete" 
+        title="Delete bug">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"/>
+        </a> 
+      </div>
+      <br style="clear: left;" />
+  </div>
+  <div class="panel-body">
+    {{ b.description }}
+  </div>
+</div>
+
+
+{% endfor %}
+
+{% else %}
+    <p> No bugs reported yet...
+{% endif %}
+
+<div id="dialog-delete-confirm" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Like diamonds, deleting is forever...</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel-delete-button" class="btn btn-default" data-dismiss="modal">No, thanks...</button>
+        <button type="button" id="confirm-delete-button" class="btn btn-primary">Yes, do it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
