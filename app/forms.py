@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired, Length, Regexp
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.fields.core import DecimalField as _DecimalField
 from wtforms.fields import IntegerField
+from wtforms.widgets import TextArea
 
 class DecimalField(_DecimalField):
   def _value(self):
@@ -35,4 +36,4 @@ class TagEditForm(Form):
     
 class BugEditForm(Form):
     title = StringField('title', validators=[Length(min=1, max=256), DataRequired()])
-    description = TextAreaField('description', validators=[Length(min=1, max=1024), DataRequired()])
+    description = StringField('description', widget=TextArea(), validators=[Length(min=1, max=1024), DataRequired()])

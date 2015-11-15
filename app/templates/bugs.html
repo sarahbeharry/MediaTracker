@@ -11,7 +11,7 @@
 	<div class="control-group">
         <label class="control-label" for="title">Title:</label>
         <div class="controls">
-                {{ bug_form.title(class="form-control") }}
+                {{ bug_form.title(class="form-control", maxlength=256) }}
                 {% for error in bug_form.title.errors %}
                 <span class="text-danger">[{{ error }}]</span>
                 {% endfor %}
@@ -21,7 +21,7 @@
 	<div class="control-group">
         <label class="control-label" for="description">Description:</label>
         <div class="controls">
-                {{ bug_form.description(class="form-control") }}
+                {{ bug_form.description(rows="2", maxlength=1024, class="form-control") }}
                 {% for error in bug_form.description.errors %}
                 <span class="text-danger">[{{ error }}]</span>
                 {% endfor %}
