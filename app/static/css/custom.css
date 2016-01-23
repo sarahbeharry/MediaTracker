@@ -9,3 +9,11 @@
     font-size: 1.5em;
     padding: 0px 4px 0px 0px;
 }
+
+.noUnderline:hover {
+    text-decoration: none;
+}
+
+.lineHeightAlign {
+    line-height: 0.4;
+}
