@@ -8,7 +8,7 @@
 	<div class="control-group">
         <label class="control-label" for="name">Name:</label>
         <div class="controls">
-                {{ mediaForm.name(class="form-control") }}
+                {{ mediaForm.name(class="form-control", maxlength=256) }}
                 {% for error in mediaForm.name.errors %}
                 <span class="text-danger">[{{ error }}]</span>
                 {% endfor %}
@@ -18,7 +18,7 @@
 	<div class="control-group">
         <label class="control-label" for="notes">Notes:</label>
         <div class="controls">
-                {{ mediaForm.notes(class="form-control") }}
+                {{ mediaForm.notes(class="form-control", maxlength=256) }}
                 {% for error in mediaForm.notes.errors %}
                 <span class="text-danger">[{{ error }}]</span>
                 {% endfor %}
