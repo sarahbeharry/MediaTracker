@@ -32,7 +32,7 @@ def create_query_string(tag_id, sortcode, compressed):
     return urlencode(settings)
     
 def create_episode_string(media):
-   return 'Current episode: ' + ('%.12g' % media.current_episode.episode_number if media.current_episode else 'None')
+   return 'Current episode: ' + ('%.12g' % media.current_episode.episode_number if media.current_episode else 'Not started')
 
 def create_new_media_form(media = None):
     form = MediaForm()
