@@ -14,6 +14,16 @@
     text-decoration: none;
 }
 
-.lineHeightAlign {
-    line-height: 0.4;
+.compressedRow {
+    padding: 4px 8px 1px 8px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.compressedRow:hover {
+    background-color: #63778a;
+}
+
+.smallTag {
+    font-size: 1em;
 }

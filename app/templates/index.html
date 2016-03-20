@@ -64,13 +64,13 @@ Sort by:
     {% for m in media_list %}
         {% if compressed %}
         <small>
-        <div class="well well-sm lineHeightAlign">
+        <div class="well compressedRow">
             <div style="float: left; width: 70%;">
             <b>{{ m.name}}</b> {{' | ' + create_episode_string(m) }}
           {% for t in m.tags %}
 
           <a class="noUnderline" href="{{ url_for ('index')}}?filter_by_tag={{t.id}}{{'&' + query_string if query_string}}">
-          <span class="tagColourElement lineHeightAlign" style="color: {{ t.colour }};" aria-hidden="true" title="{{ t.name }}">&#9751;</span>
+          <span class="tagColourElement smallTag" style="color: {{ t.colour }};" aria-hidden="true" title="{{ t.name }}">&#9751;</span>
           </a>
         {% endfor %}
           </div>
@@ -80,7 +80,7 @@ Sort by:
             {{ url_for('increment_episode', media_id = m.id) }}?{{ query_string }}" 
 
             title="Click to increment episode number">
-                <span class="glyphicon glyphicon-plus text-info lineHeightAlign" aria-hidden="true"/>
+                <span class="glyphicon glyphicon-plus text-info" aria-hidden="true"/>
             </a>
           </div>
           
@@ -88,7 +88,7 @@ Sort by:
             <a href="{{ url_for('media_details', media_id=m.id) }}" 
 
             title="Edit media">
-                <span class="glyphicon glyphicon-pencil text-danger lineHeightAlign" aria-hidden="true"/>
+                <span class="glyphicon glyphicon-pencil text-danger" aria-hidden="true"/>
             </a> 
             
           </div>
