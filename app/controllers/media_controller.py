@@ -15,7 +15,7 @@ def get_all_media(tag_id = None, sort = None):
     elif sort == "dateAdded":
         return sorted(media_list, key=lambda media: media.id)
     elif sort == "episode":
-        return sorted(media_list, key=lambda media: (media.current_episode.episode_number if media.current_episode else 0)/(len(media.episodes) if media.episodes else 1), reverse=True)
+        return sorted(media_list, key=lambda media: (media.current_episode.episode_number if media.current_episode else 0), reverse=True)
     else: # default sort is dateModified
         return sorted(media_list, key=lambda media: media.last_updated, reverse=True)
 
