@@ -19,6 +19,8 @@ def tag_details(tag_id):
     if tag:
         tagEditForm.name.data = tag.name
         tagEditForm.colour.data = tag.colour
+        tagEditForm.style.data = tag.style
+        tagEditForm.description.data = tag.description
         return render_template('tag_edit.html',
                     tag = tag,
                     tagEditForm = tagEditForm,
@@ -33,10 +35,13 @@ def edit_tag(tag_id):
     if form.validate_on_submit():
         tag_controller.edit_tag(tag_id, 
                                 form.name.data, 
-                                form.colour.data)
+                                form.colour.data,
+                                form.style.data,
+                                form.description.data)
         flash('Tag changes saved.')
     else:
         flash('Some of your fields need fixing!')
+        tag = tag_controller.get_tag(tag_id)
         return render_template('tag_edit.html',
                     tag = tag,
                     tagEditForm = form,

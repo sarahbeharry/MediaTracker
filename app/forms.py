@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, SelectField, SelectMultipleField, TextAreaField, widgets
-from wtforms.validators import DataRequired, Length, Regexp
+from wtforms import StringField, SelectField, SelectMultipleField, TextAreaField, widgets, RadioField
+from wtforms.validators import DataRequired, Length, Regexp, Required
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.fields.core import DecimalField as _DecimalField
 from wtforms.fields import IntegerField
@@ -32,7 +32,9 @@ class EpisodeGenerationForm(Form):
 	
 class TagEditForm(Form):
     name = StringField('name', validators=[Length(min=1, max=256), DataRequired()])
+    description = StringField('description', validators=[Length(min=0, max=256)])
     colour = StringField('colour', validators=[Regexp('^#[A-Fa-f0-9]{6}$', flags=0, message='Invalid colour hex code.'), DataRequired()])
+    style = RadioField('style',choices=[('stop','stop'),('asterisk','asterisk'), ('plus', 'plus'), ('heart', 'heart'),('star','star'),('user','user'),('cog','cog'),('bookmark','bookmark'),('tint','tint'),('flash','flash'),('record','record'),('music','music'),('tower','tower'),('tree-deciduous','tree-deciduous')], validators=[Required(message="Please select a tag style")])
     
 class BugEditForm(Form):
     title = StringField('title', validators=[Length(min=1, max=256), DataRequired()])

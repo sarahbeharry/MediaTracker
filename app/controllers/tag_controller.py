@@ -25,11 +25,13 @@ def delete_tag(tag_id):
     else:
         return False
         
-def edit_tag(tag_id, name, colour):
+def edit_tag(tag_id, name, colour, style, description):
     tag = get_tag(tag_id)
     if tag:
         tag.name = name
         tag.colour = colour
+        tag.style = style
+        tag.description = description
         update_tag(tag)
         
 def convert_to_tags(tag_list_id):

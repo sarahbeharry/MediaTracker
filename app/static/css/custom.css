@@ -6,7 +6,6 @@
 }
 
 .tagColourElement {
-    font-size: 1.5em;
     padding: 0px 4px 0px 0px;
 }
 
@@ -26,4 +25,25 @@
 
 .smallTag {
     font-size: 1em;
+}
+
+.bigTag {
+    font-size: 2em;
+}
+
+.hiddenRadio {
+    visibility:hidden;
+}
+
+.hiddenRadio.check-with-label:checked + .label-for-check {
+  color: #FF0000;
+}
+
+.label-for-check:hover {
+    color: #F5A9A9;
+}
+
+.radioInline {
+    display: inline;
+    margin: 10px;
 }

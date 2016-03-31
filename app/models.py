@@ -32,9 +32,14 @@ class Episode(db.Model):
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Unicode(256), index=True, unique=True)
+    description = db.Column(db.Unicode(256))
     colour = db.Column(db.Unicode(7))
     tagged_media = db.relationship('Media',
                             secondary='media_tag')
+    style = db.Column(db.Unicode(64))
+    
+    def get_tag_style(self):
+        return self.style if self.style else 'stop'
     
 class Media_Tag(db.Model):
     __tablename__ = 'media_tag'

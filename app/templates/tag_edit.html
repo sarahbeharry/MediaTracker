@@ -30,9 +30,15 @@ method="post" name="editTag" autocomplete="off">
                 <span class="text-danger">[{{ error }}]</span>
                 {% endfor %}
         </div>
+        <br/>
+        <label class="control-label" for="description">Description:</label>
+        <div class="controls">
+                {{ tagEditForm.description(class="form-control", maxlength=256) }}
+                {% for error in tagEditForm.description.errors %}
+                <span class="text-danger">[{{ error }}]</span>
+                {% endfor %}
         </div>
-
-	<div class="control-group">
+        <br/>
         <label class="control-label" for="colour">Colour:</label>
         <div class="controls">
                 {{ tagEditForm.colour(class="form-control color {hash:true}", maxlength=7) }}
@@ -41,6 +47,21 @@ method="post" name="editTag" autocomplete="off">
                 {% endfor %}
 
         </div>
+        <br/>
+        <label class="control-label" for="style">Tag style:</label>
+        <div class="controls">
+        {% for subfield in tagEditForm.style %}
+        <label class="radio radioInline">
+        {{ subfield(class="check-with-label hiddenRadio") }}
+        <span class="label-for-check bigTag glyphicon glyphicon-{{ subfield.data }}"><span/>
+        </label>
+        {% endfor %}
+    
+        {% for error in tagEditForm.style.errors %}
+            <span class="text-danger">[{{ error }}]</span>
+        {% endfor %}
+        </div>
+
     </div>
 
 	<br/>

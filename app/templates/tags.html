@@ -14,8 +14,9 @@ Add new tag
 {% for t in tag_list %}
 
     <p>
-        <a href="{{ url_for('tag_details', tag_id=t.id) }}"
-                class="btn btn-default tag"><span class="tagColourElement" style="color: {{ t.colour }};" aria-hidden="true">&#9751;</span><b>{{ t.name }}</b></a>
+        <a href="{{ url_for('tag_details', tag_id=t.id) }}" 
+                {% if t.description %}title="{{ t.description }}"{% endif %} 
+                class="btn btn-default tag"><span class="tagColourElement glyphicon glyphicon-{{ t.get_tag_style() }}" style="color: {{ t.colour }};" aria-hidden="true"></span><b>{{ t.name }}</b></a>
     </p>
 
 {% endfor %}
