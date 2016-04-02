@@ -72,7 +72,9 @@ def add_tag():
     form = TagEditForm()
     if form.validate_on_submit():
         tag = models.Tag(name = form.name.data,
-                         colour = form.colour.data)
+                         colour = form.colour.data,
+                         description = form.description.data,
+                         style = form.style.data)
         tag_controller.add_tag(tag)
         flash('New tag changes added.')
     else:
