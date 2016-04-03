@@ -4,6 +4,7 @@
 
 {% block content %}
 <script type="text/javascript" src="{{ url_for('index') }}static/jscolor/jscolor.js"></script>
+<script src="{{ url_for('index') }}static/js/tag_preview.js"></script>
 <h1>
 {% if edit %}
 Edit
@@ -25,7 +26,7 @@ method="post" name="editTag" autocomplete="off">
 	<div class="control-group">
         <label class="control-label" for="name">Name:</label>
         <div class="controls">
-                {{ tagEditForm.name(class="form-control", maxlength=256) }}
+                {{ tagEditForm.name(class="form-control update-tag-preview", maxlength=256) }}
                 {% for error in tagEditForm.name.errors %}
                 <span class="text-danger">[{{ error }}]</span>
                 {% endfor %}
@@ -33,7 +34,7 @@ method="post" name="editTag" autocomplete="off">
         <br/>
         <label class="control-label" for="description">Description:</label>
         <div class="controls">
-                {{ tagEditForm.description(class="form-control", maxlength=256) }}
+                {{ tagEditForm.description(class="form-control update-tag-preview", maxlength=256) }}
                 {% for error in tagEditForm.description.errors %}
                 <span class="text-danger">[{{ error }}]</span>
                 {% endfor %}
@@ -41,7 +42,7 @@ method="post" name="editTag" autocomplete="off">
         <br/>
         <label class="control-label" for="colour">Colour:</label>
         <div class="controls">
-                {{ tagEditForm.colour(class="form-control color {hash:true}", maxlength=7) }}
+                {{ tagEditForm.colour(class="update-tag-preview form-control color {hash:true}", maxlength=7) }}
                 {% for error in tagEditForm.colour.errors %}
                 <span class="text-danger">[{{ error }}]</span>
                 {% endfor %}
@@ -52,7 +53,7 @@ method="post" name="editTag" autocomplete="off">
         <div class="controls">
         {% for subfield in tagEditForm.style %}
         <label class="radio radioInline">
-        {{ subfield(class="check-with-label hiddenRadio") }}
+        {{ subfield(class="check-with-label hiddenRadio update-tag-preview") }}
         <span class="label-for-check bigTag glyphicon glyphicon-{{ subfield.data }}"><span/>
         </label>
         {% endfor %}
@@ -61,7 +62,12 @@ method="post" name="editTag" autocomplete="off">
             <span class="text-danger">[{{ error }}]</span>
         {% endfor %}
         </div>
-
+        
+        <br/>
+        <label class="control-label" for="style">Tag preview:</label>
+        <div class="controls">
+        <a title="" class="btn btn-default tag" id="tag-preview"><span class="tagColourElement glyphicon glyphicon-asterisk glyphicon-plus" style="color: white;" aria-hidden="true" id="tag-style-preview"></span><b><span id="tag-name-preview">Tag name</span></b></a>
+        </div>
     </div>
 
 	<br/>
