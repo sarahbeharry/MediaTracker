@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from application.flask_app_and_db import app
+from application.flask_app_and_db import flask_app as app
 from application import models
 from flask import render_template, redirect, flash, url_for
 from ..forms import TagEditForm
