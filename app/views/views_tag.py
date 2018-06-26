@@ -9,8 +9,9 @@ from ..controllers import tag_controller
 def view_tags():
     tag_list = tag_controller.get_all_tags()
     return render_template('tags.html',
-                            tag_list =  tag_list)
-                            
+                           tag_list=tag_list)
+
+
 @app.route('/tag/<tag_id>', methods=['GET'])
 def tag_details(tag_id):
     tagEditForm = TagEditForm()
@@ -22,13 +23,14 @@ def tag_details(tag_id):
         tagEditForm.style.data = tag.style
         tagEditForm.description.data = tag.description
         return render_template('tag_edit.html',
-                    tag = tag,
-                    tagEditForm = tagEditForm,
-                    edit = True)
+                               tag=tag,
+                               tagEditForm=tagEditForm,
+                               edit=True)
     else:
         flash('I couldn''t find any tags with ID {0}: sadface.'.format(tag_id))
         return redirect(url_for('view_tags'))
-        
+
+
 @app.route('/tag/<tag_id>', methods=['POST'])
 def edit_tag(tag_id):
     form = TagEditForm()
@@ -43,11 +45,12 @@ def edit_tag(tag_id):
         flash('Some of your fields need fixing!')
         tag = tag_controller.get_tag(tag_id)
         return render_template('tag_edit.html',
-                    tag = tag,
-                    tagEditForm = form,
-                    edit = True)
+                               tag=tag,
+                               tagEditForm=form,
+                               edit=True)
     return redirect(url_for('view_tags'))
-    
+
+
 @app.route('/tag/<tag_id>/delete', methods=['GET'])
 def delete_tag(tag_id):
     tag_name = tag_controller.get_tag(tag_id).name
@@ -56,15 +59,16 @@ def delete_tag(tag_id):
         return redirect(url_for('view_tags'))
     else:
         flash('Something went wrong when deleting {0}.'.format(tag_name))
-        return redirect(url_for('tag_details', tag_id = tag_id))
+        return redirect(url_for('tag_details', tag_id=tag_id))
     return redirect(url_for('view_tags'))
+
 
 @app.route('/tag', methods=['GET'])
 def new_tag_form():
     tagEditForm = TagEditForm()
     return render_template('tag_edit.html',
-                    tagEditForm = tagEditForm,
-                    edit = False)
+                           tagEditForm=tagEditForm,
+                           edit=False)
     
 
 @app.route('/tag', methods=['POST'])
@@ -80,6 +84,6 @@ def add_tag():
     else:
         flash('Some of your fields need fixing!')
         return render_template('tag_edit.html',
-                    tagEditForm = form,
-                    edit = False)
+                               tagEditForm=form,
+                               edit=False)
     return redirect(url_for('view_tags'))

@@ -40,7 +40,22 @@ class TagEditForm(Form):
     name = StringField('name', validators=[Length(min=1, max=256), DataRequired()])
     description = StringField('description', validators=[Length(min=0, max=256)])
     colour = StringField('colour', validators=[Regexp('^#[A-Fa-f0-9]{6}$', flags=0, message='Invalid colour hex code.'), DataRequired()])
-    style = RadioField('style',choices=[('stop','stop'),('asterisk','asterisk'), ('heart', 'heart'),('star','star'),('user','user'),('cog','cog'),('bookmark','bookmark'),('tint','tint'),('flash','flash'),('record','record'),('music','music'),('tower','tower'),('tree-deciduous','tree-deciduous'),('globe', 'globe'),('glass', 'glass')], validators=[Required(message="Please select a tag style")])
+    style = RadioField('style', choices=[('stop', 'stop'),
+                                         ('asterisk', 'asterisk'),
+                                         ('heart', 'heart'),
+                                         ('star', 'star'),
+                                         ('user', 'user'),
+                                         ('cog', 'cog'),
+                                         ('bookmark', 'bookmark'),
+                                         ('tint', 'tint'),
+                                         ('flash', 'flash'),
+                                         ('record', 'record'),
+                                         ('music', 'music'),
+                                         ('tower', 'tower'),
+                                         ('tree-deciduous', 'tree-deciduous'),
+                                         ('globe', 'globe'),
+                                         ('glass', 'glass')],
+                       validators=[Required(message="Please select a tag style")])
 
 
 class BugEditForm(Form):

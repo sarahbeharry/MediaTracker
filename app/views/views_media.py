@@ -5,11 +5,13 @@ from ..forms import MediaForm, EpisodeForm, EpisodeGenerationForm
 from ..controllers import media_controller
 from . import views_main
 
+
 @app.route('/media', methods=['GET'])
 def enter_add_media():
     form = create_new_media_form()
     return render_template('add_media.html',
                             mediaForm =  form)
+
 
 @app.route('/media', methods=['POST'])
 def add_media():
@@ -23,6 +25,7 @@ def add_media():
 		flash('Some of your fields need fixing!')
 		return render_template('add_media.html',
 					mediaForm = form)
+
 
 @app.route('/media/<media_id>', methods=['GET'])
 def media_details(media_id):
@@ -68,6 +71,7 @@ def edit_media(media_id):
 	
 	return redirect(url_for('media_details', media_id = media_id))
 
+
 @app.route('/media/<media_id>/delete', methods=['GET'])
 def delete_media(media_id):
 	media_name = media_controller.get_media(media_id).name
@@ -77,7 +81,8 @@ def delete_media(media_id):
 	else:
 		flash('Something went wrong when deleting {0}.'.format(media_name))
 		return redirect(url_for('media_details', media_id = media_id))
-	
+
+
 @app.route('/media/<media_id>/episode', methods=['POST'])
 def add_episode(media_id):
 	form = EpisodeForm()
@@ -90,6 +95,7 @@ def add_episode(media_id):
 
 	return redirect(url_for('media_details', media_id = media_id))
 
+
 @app.route('/media/<media_id>/episode/<episode_id>/delete', methods=['GET'])
 def delete_episode(media_id, episode_id):
 	if media_controller.delete_episode(episode_id):
@@ -98,6 +104,7 @@ def delete_episode(media_id, episode_id):
 		flash('Something went wrong when deleting that episode.')
 	
 	return redirect(url_for('media_details', media_id = media_id))
+
 
 @app.route('/media/<media_id>/episode/deleteAll', methods=['GET'])
 def delete_all_episodes(media_id):
@@ -108,6 +115,7 @@ def delete_all_episodes(media_id):
 
 	return redirect(url_for('media_details', media_id = media_id))
 
+
 @app.route('/media/<media_id>/episode/increment', methods=['GET'])
 def increment_episode(media_id):
 	media_name = media_controller.get_media(media_id).name
@@ -116,6 +124,7 @@ def increment_episode(media_id):
 	else:
 		flash('You have just watched the last episode of {0}!'.format(media_name))
 	return redirect(url_for('index') + '?' + request.query_string)
+
 
 @app.route('/media/<media_id>/episode/generate', methods=['POST'])
 def generate_episodes(media_id):
@@ -132,8 +141,10 @@ def generate_episodes(media_id):
 
 	return redirect(url_for('media_details', media_id = media_id))
 
+
 def create_new_media_form(media = None):
     return views_main.create_new_media_form(media)
+
 
 def read_media_form(media = None):
     return views_main.read_media_form(media)

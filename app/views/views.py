@@ -12,6 +12,7 @@ def index():
 				media_list = media_list,
 				mediaForm = form)
 
+
 @app.route('/media', methods=['POST'])
 def add_media():
 	form = create_new_media_form()
@@ -25,6 +26,7 @@ def add_media():
 		return render_template('index.html',
 					mediaForm = form,
 					media_list = media_controller.get_all_media())
+
 
 @app.route('/media/<media_id>', methods=['GET'])
 def media_details(media_id):
@@ -66,6 +68,7 @@ def edit_media(media_id):
 	
 	return redirect(url_for('media_details', media_id = media_id))
 
+
 @app.route('/media/<media_id>/delete', methods=['GET'])
 def delete_media(media_id):
 	media_name = media_controller.get_media(media_id).name
@@ -75,18 +78,20 @@ def delete_media(media_id):
 	else:
 		flash('Something went wrong when deleting {0}.'.format(media_name))
 		return redirect(url_for('media_details', media_id = media_id))
-	
+
+
 @app.route('/media/<media_id>/episode', methods=['POST'])
 def add_episode(media_id):
 	form = EpisodeForm()
 	if form.validate_on_submit():
 		episode = models.Episode(episode_number = form.number.data,
 					media_id = media_id)
-		media_controller.add_episode(episode)
-	else:
-                flash('Episode numbers should probably be numbers...')
+        media_controller.add_episode(episode)
+    else:
+        flash('Episode numbers should probably be numbers...')
 
-	return redirect(url_for('media_details', media_id = media_id))
+    return redirect(url_for('media_details', media_id = media_id))
+
 
 @app.route('/media/<media_id>/episode/<episode_id>/delete', methods=['GET'])
 def delete_episode(media_id, episode_id):
@@ -97,6 +102,7 @@ def delete_episode(media_id, episode_id):
 	
 	return redirect(url_for('media_details', media_id = media_id))
 
+
 @app.route('/media/<media_id>/episode/deleteAll', methods=['GET'])
 def delete_all_episodes(media_id):
 	if media_controller.delete_all_episodes(media_id):
@@ -106,6 +112,7 @@ def delete_all_episodes(media_id):
 
 	return redirect(url_for('media_details', media_id = media_id))
 
+
 @app.route('/media/<media_id>/episode/increment', methods=['GET'])
 def increment_episode(media_id):
 	media_name = media_controller.get_media(media_id).name
@@ -114,6 +121,7 @@ def increment_episode(media_id):
 	else:
 		flash('You have just watched the last episode of {0}!'.format(media_name))
 	return redirect(url_for('index'))
+
 
 @app.route('/media/<media_id>/episode/generate', methods=['POST'])
 def generate_episodes(media_id):
@@ -133,24 +141,26 @@ def generate_episodes(media_id):
 
 # Helper functions
 def create_new_media_form(media = None):
-	form = MediaForm()
-	 # Need to populate episode dropdown choices, otherwise null error during validation
+    form = MediaForm()
+    # Need to populate episode dropdown choices, otherwise null error during validation
 	if media:
-		form.current_episode_id.query = media_controller.get_episodes_for_media_query(media.id).order_by(models.Episode.episode_number)
-	
-	return form
+        form.current_episode_id.query = media_controller.get_episodes_for_media_query(media.id).order_by(models.Episode.episode_number)
+
+    return form
 
 
 # Error pages
 @app.errorhandler(404)
 def not_found_error(error):
-	return render_template('404.html'), 404
+    return render_template('404.html'), 404
+
 
 @app.errorhandler(500)
 def internal_error(error):
-	return render_template('500.html'), 500
+    return render_template('500.html'), 500
+
 
 @app.errorhandler(503)
 def method_not_supported(error):
-        return render_template('500.html'), 503
+    return render_template('500.html'), 503
 
