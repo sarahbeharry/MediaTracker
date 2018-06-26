@@ -1,3 +1,3 @@
 #!flask/bin/python
-from app import app
-app.run(debug=True)
+from application.flask_app_and_db import flask_app
+flask_app.run(debug=True)

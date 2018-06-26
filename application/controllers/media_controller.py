@@ -1,4 +1,4 @@
-from app import db, models
+from application import db, models
 from . import tag_controller
 
 # database i/o

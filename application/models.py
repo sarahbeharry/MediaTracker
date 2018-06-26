@@ -1,4 +1,4 @@
-from app import db
+from application.__init__ import db
 
 
 class Media(db.Model):

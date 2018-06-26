@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from app import app, models
+from .. import app, models
 from flask import render_template, redirect, flash, url_for, request
 from ..forms import MediaForm, EpisodeForm, EpisodeGenerationForm
 from ..controllers import media_controller

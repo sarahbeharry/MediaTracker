@@ -1,4 +1,4 @@
-from app import db, models
+from application import db, models
 
 
 def get_all_tags():
