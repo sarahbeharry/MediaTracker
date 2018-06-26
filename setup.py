@@ -6,6 +6,7 @@ setup(name='MediaTracker',
       author='Sarah Melanie Laura Beharry-Goss',
       install_requires=[
           'flask',
+          'mysqlclient',
           'flask-sqlalchemy',
           'sqlalchemy-migrate',
           'flask-wtf',
