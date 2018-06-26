@@ -1,7 +1,7 @@
 from application.flask_app_and_db import flask_app as app
 from application import models
 from flask import render_template, redirect, flash, url_for
-from application.forms import MediaForm
+from application.forms import MediaForm, EpisodeForm, EpisodeGenerationForm
 from application.controllers import media_controller
 
 
