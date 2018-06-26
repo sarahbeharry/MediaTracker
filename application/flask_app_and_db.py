@@ -6,4 +6,4 @@ flask_app.config.from_object('config')
 db = SQLAlchemy(flask_app)
 
 # then import the views to apply all the app.route decorators without triggering circular import issues
-from application.views import views, views_bug, views_main, views_media, views_tag
+from application.views import views_bug, views_main, views_media, views_tag
