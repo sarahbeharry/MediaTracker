@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
-from application import app, models
+from application.flask_app_and_db import app
+from application import models
 from flask import render_template, redirect, flash, url_for
 from ..forms import TagEditForm
 from ..controllers import tag_controller
@@ -14,17 +15,17 @@ def view_tags():
 
 @app.route('/tag/<tag_id>', methods=['GET'])
 def tag_details(tag_id):
-    tagEditForm = TagEditForm()
-    
+    tag_edit_form = TagEditForm()
+
     tag = tag_controller.get_tag(tag_id)
     if tag:
-        tagEditForm.name.data = tag.name
-        tagEditForm.colour.data = tag.colour
-        tagEditForm.style.data = tag.style
-        tagEditForm.description.data = tag.description
+        tag_edit_form.name.data = tag.name
+        tag_edit_form.colour.data = tag.colour
+        tag_edit_form.style.data = tag.style
+        tag_edit_form.description.data = tag.description
         return render_template('tag_edit.html',
                                tag=tag,
-                               tagEditForm=tagEditForm,
+                               tagEditForm=tag_edit_form,
                                edit=True)
     else:
         flash('I couldn''t find any tags with ID {0}: sadface.'.format(tag_id))
@@ -35,8 +36,8 @@ def tag_details(tag_id):
 def edit_tag(tag_id):
     form = TagEditForm()
     if form.validate_on_submit():
-        tag_controller.edit_tag(tag_id, 
-                                form.name.data, 
+        tag_controller.edit_tag(tag_id,
+                                form.name.data,
                                 form.colour.data,
                                 form.style.data,
                                 form.description.data)
@@ -60,25 +61,24 @@ def delete_tag(tag_id):
     else:
         flash('Something went wrong when deleting {0}.'.format(tag_name))
         return redirect(url_for('tag_details', tag_id=tag_id))
-    return redirect(url_for('view_tags'))
 
 
 @app.route('/tag', methods=['GET'])
 def new_tag_form():
-    tagEditForm = TagEditForm()
+    tag_edit_form = TagEditForm()
     return render_template('tag_edit.html',
-                           tagEditForm=tagEditForm,
+                           tagEditForm=tag_edit_form,
                            edit=False)
-    
+
 
 @app.route('/tag', methods=['POST'])
 def add_tag():
     form = TagEditForm()
     if form.validate_on_submit():
-        tag = models.Tag(name = form.name.data,
-                         colour = form.colour.data,
-                         description = form.description.data,
-                         style = form.style.data)
+        tag = models.Tag(name=form.name.data,
+                         colour=form.colour.data,
+                         description=form.description.data,
+                         style=form.style.data)
         tag_controller.add_tag(tag)
         flash('New tag changes added.')
     else:

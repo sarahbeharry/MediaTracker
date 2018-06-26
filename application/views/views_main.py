@@ -16,7 +16,7 @@ def index():
     media_list = media_controller.get_all_media(tag_id, sortcode)
     form = create_new_media_form()
     compressed = request.args.get('compressed')
-    return render_template('index.html', 
+    return render_template('index.html',
                            media_list=media_list,
                            mediaForm=form,
                            filter_tag=tag_controller.get_tag(tag_id) if tag_id else None,
@@ -26,39 +26,46 @@ def index():
                            create_query_string=create_query_string,
                            create_episode_string=create_episode_string)
 
+
 # Helper functions
 
 
 def create_query_string(tag_id, sortcode, compressed):
-    settings = {k: v for k, v in OrderedDict(selected_tag=tag_id,selected_sort=sortcode,compressed=compressed).iteritems() if v}
-        
+    settings = {k: v for k, v in OrderedDict(selected_tag=tag_id,
+                                             selected_sort=sortcode,
+                                             compressed=compressed).iteritems() if v}
+
     return urlencode(settings)
 
 
 def create_episode_string(media):
-   return 'Current episode: ' + ('%.12g' % media.current_episode.episode_number if media.current_episode else 'Not started')
+    return 'Current episode: ' + ('%.12g' % media.current_episode.episode_number
+                                  if media.current_episode else 'Not started')
 
 
-def create_new_media_form(media = None):
+def create_new_media_form(media=None):
     form = MediaForm()
     # Need to populate episode dropdown choices, otherwise null error during validation
     if media:
-        form.current_episode_id.query = media_controller.get_episodes_for_media_query(media.id).order_by(models.Episode.episode_number)
+        form.current_episode_id.query = media_controller.get_episodes_for_media_query(media.id).order_by(
+            models.Episode.episode_number)
         form.tags.choices = [(tag.id, tag.name) for tag in tag_controller.get_all_tags()]
-        
+
         form.tags.data = [tag.id for tag in media.tags]
-        
+
     return form
 
 
-def read_media_form(media = None):
+def read_media_form(media=None):
     form = MediaForm()
     # Need to populate episode dropdown choices, otherwise null error during validation
     if media:
-        form.current_episode_id.query = media_controller.get_episodes_for_media_query(media.id).order_by(models.Episode.episode_number)
+        form.current_episode_id.query = media_controller.get_episodes_for_media_query(media.id).order_by(
+            models.Episode.episode_number)
         form.tags.choices = [(tag.id, tag.name) for tag in tag_controller.get_all_tags()]
-        
+
     return form
+
 
 # Error pages
 
@@ -75,4 +82,4 @@ def internal_error(error):
 
 @app.errorhandler(503)
 def method_not_supported(error):
-        return render_template('500.html'), 503
+    return render_template('500.html'), 503

@@ -46,8 +46,8 @@ class Tag(db.Model):
 
 class MediaTag(db.Model):
     __tablename__ = 'media_tag'
-    media_id = db.Column('media_id', db.Integer, db.ForeignKey('media.id'), primary_key = True)
-    tag_id = db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key = True)
+    media_id = db.Column('media_id', db.Integer, db.ForeignKey('media.id'), primary_key=True)
+    tag_id = db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
 
 
 class Bug(db.Model):

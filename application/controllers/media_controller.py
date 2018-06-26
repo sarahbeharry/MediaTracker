@@ -2,22 +2,25 @@ from application.flask_app_and_db import db
 from application import models
 from application.controllers import tag_controller
 
+
 # database i/o
 # media
 
 
-def get_all_media(tag_id = None, sort = None):
+def get_all_media(tag_id=None, sort=None):
     if tag_id:
         media_list = tag_controller.get_tag(tag_id).tagged_media
     else:
         media_list = models.Media.query.all()
-    
+
     if sort == "name":
         return sorted(media_list, key=lambda media: media.name)
     elif sort == "dateAdded":
         return sorted(media_list, key=lambda media: media.id)
     elif sort == "episode":
-        return sorted(media_list, key=lambda media: (media.current_episode.episode_number if media.current_episode else 0), reverse=True)
+        return sorted(media_list,
+                      key=lambda media: (media.current_episode.episode_number if media.current_episode else 0),
+                      reverse=True)
     else:  # default sort is dateModified
         return sorted(media_list, key=lambda media: media.last_updated, reverse=True)
 
@@ -60,11 +63,12 @@ def delete_media(media_id):
     else:
         return False
 
+
 # episode
 
 
 def get_episodes_for_media_query(media_id):
-    return models.Episode.query.filter_by(media_id = media_id)
+    return models.Episode.query.filter_by(media_id=media_id)
 
 
 def increment_episode(media_id):
@@ -92,10 +96,10 @@ def add_episode(episode):
 
 
 def delete_episode(episode_id):
-    episode = models.Episode.query.filter_by(id = episode_id).first()
+    episode = models.Episode.query.filter_by(id=episode_id).first()
     if episode:
         # Check it's not the current episode of any series first
-        media = models.Media.query.filter_by(current_episode_id = episode_id).first()
+        media = models.Media.query.filter_by(current_episode_id=episode_id).first()
         if media:
             media.current_episode_id = None
             db.session.merge(media)
@@ -115,9 +119,9 @@ def generate_episodes(media_id, count):
     else:
         last_episode_number_floor = 0
     for i in range(last_episode_number_floor + 1, last_episode_number_floor + 1 + count):
-                episode = models.Episode(episode_number=i,
-                                         media_id=media_id)
-                add_episode(episode)
+        episode = models.Episode(episode_number=i,
+                                 media_id=media_id)
+        add_episode(episode)
 
 
 def delete_all_episodes(media_id):

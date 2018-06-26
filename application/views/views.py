@@ -31,20 +31,20 @@ def add_media():
 
 @app.route('/media/<media_id>', methods=['GET'])
 def media_details(media_id):
-    episodeForm = EpisodeForm()
-    episodeGenerationForm = EpisodeGenerationForm()
+    episode_form = EpisodeForm()
+    episode_generation_form = EpisodeGenerationForm()
     media = media_controller.get_media(media_id)
     if media:
-        mediaForm = create_new_media_form(media)
-        mediaForm.name.data = media.name
-        mediaForm.current_episode_id.data = media.current_episode
-        mediaForm.notes.data = media.notes
+        media_form = create_new_media_form(media)
+        media_form.name.data = media.name
+        media_form.current_episode_id.data = media.current_episode
+        media_form.notes.data = media.notes
         return render_template('media_details.html',
                                media=media,
                                episodes=media.episodes,
-                               episodeForm=episodeForm,
-                               episodeGenerationForm=episodeGenerationForm,
-                               mediaForm=mediaForm)
+                               episodeForm=episode_form,
+                               episodeGenerationForm=episode_generation_form,
+                               mediaForm=media_form)
     else:
         flash('I couldn''t find any media with ID {0}: sadface.'.format(media_id))
         return redirect(url_for('index'))
@@ -53,19 +53,19 @@ def media_details(media_id):
 @app.route('/media/<media_id>', methods=['POST'])
 def edit_media(media_id):
     media = media_controller.get_media(media_id)
-    mediaForm = create_new_media_form(media)
+    media_form = create_new_media_form(media)
 
-    if mediaForm.validate_on_submit():
-        current_episode_id = mediaForm.current_episode_id.data.id if mediaForm.current_episode_id.data else None
-        media_controller.edit_media(media_id, mediaForm.name.data, current_episode_id, mediaForm.notes.data)
-        flash('Changes to {0} have been saved.'.format(mediaForm.name.data))
+    if media_form.validate_on_submit():
+        current_episode_id = media_form.current_episode_id.data.id if media_form.current_episode_id.data else None
+        media_controller.edit_media(media_id, media_form.name.data, current_episode_id, media_form.notes.data)
+        flash('Changes to {0} have been saved.'.format(media_form.name.data))
     else:
         flash('Some of your fields need fixing!')
         return render_template('media_details.html',
                                media=media,
                                episodeForm=EpisodeForm(),
                                episodeGenerationForm=EpisodeGenerationForm(),
-                               mediaForm=mediaForm)
+                               mediaForm=media_form)
     return redirect(url_for('media_details', media_id=media_id))
 
 
