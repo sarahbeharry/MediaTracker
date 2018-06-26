@@ -1,5 +1,6 @@
 from app import db
 
+
 class Media(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Unicode(256), index=True, unique=True)
@@ -29,6 +30,7 @@ class Episode(db.Model):
     def __repr__(self):
         return '<Episode: ID {0}, {1} - {2}>'.format(self.id, self.media.name, self.number)
 
+
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Unicode(256), index=True, unique=True)
@@ -40,11 +42,13 @@ class Tag(db.Model):
     
     def get_tag_style(self):
         return self.style if self.style else 'stop'
-    
-class Media_Tag(db.Model):
+
+
+class MediaTag(db.Model):
     __tablename__ = 'media_tag'
     media_id = db.Column('media_id', db.Integer, db.ForeignKey('media.id'), primary_key = True)
     tag_id = db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key = True)
+
 
 class Bug(db.Model):
     id = db.Column(db.Integer, primary_key=True)

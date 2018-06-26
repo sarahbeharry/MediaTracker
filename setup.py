@@ -7,6 +7,7 @@ setup(name='MediaTracker',
       install_requires=[
           'flask',
           'flask-sqlalchemy',
+          'sqlalchemy-migrate',
           'flask-wtf',
       ],
       author_email='sarahbeharry@hotmail.com',
