@@ -1,6 +1,6 @@
 from application.flask_app_and_db import db
 from application import models
-from . import tag_controller
+from application.controllers import tag_controller
 
 # database i/o
 # media

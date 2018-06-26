@@ -1,14 +1,15 @@
-from application import app, models
+from application.flask_app_and_db import flask_app as app
+from application import models
 from flask import render_template, redirect, flash, url_for
-from ..forms import MediaForm
-from ..controllers import media_controller
+from application.forms import MediaForm
+from application.controllers import media_controller
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-	media_list = media_controller.get_all_media()	
+	media_list = media_controller.get_all_media()
 	form = create_new_media_form()
-	return render_template('index.html', 
+	return render_template('index.html',
 				media_list = media_list,
 				mediaForm = form)
 
@@ -53,7 +54,7 @@ def media_details(media_id):
 def edit_media(media_id):
 	media = media_controller.get_media(media_id)
 	mediaForm = create_new_media_form(media)
-	
+
 	if mediaForm.validate_on_submit():
 		current_episode_id = mediaForm.current_episode_id.data.id if mediaForm.current_episode_id.data else None
 		media_controller.edit_media(media_id, mediaForm.name.data, current_episode_id, mediaForm.notes.data)
@@ -65,7 +66,7 @@ def edit_media(media_id):
 					episodeForm = EpisodeForm(),
 					episodeGenerationForm = EpisodeGenerationForm(),
 					mediaForm = mediaForm)
-	
+
 	return redirect(url_for('media_details', media_id = media_id))
 
 
@@ -99,7 +100,7 @@ def delete_episode(media_id, episode_id):
 		flash('You deleted an episode!')
 	else:
 		flash('Something went wrong when deleting that episode.')
-	
+
 	return redirect(url_for('media_details', media_id = media_id))
 
 

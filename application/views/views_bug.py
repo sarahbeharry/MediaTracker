@@ -1,8 +1,9 @@
 from __future__ import unicode_literals
-from application import app, models
+from application.flask_app_and_db import flask_app as app
+from application import models
 from flask import render_template, redirect, flash, url_for
-from ..forms import BugEditForm
-from ..controllers import bug_controller
+from application.forms import BugEditForm
+from application.controllers import bug_controller
 
 
 @app.route('/bugs', methods=['GET'])

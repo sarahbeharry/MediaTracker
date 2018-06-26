@@ -1,8 +1,9 @@
 from __future__ import unicode_literals
-from application import app, models
+from application.flask_app_and_db import flask_app as app
+from application import models
 from flask import render_template, redirect, flash, url_for, request
-from ..forms import MediaForm
-from ..controllers import media_controller, tag_controller
+from application.forms import MediaForm
+from application.controllers import media_controller, tag_controller
 
 from urllib import urlencode, quote
 from collections import OrderedDict

@@ -1,9 +1,10 @@
 from __future__ import unicode_literals
-from .. import app, models
+from application.flask_app_and_db import flask_app as app
+from application import models
 from flask import render_template, redirect, flash, url_for, request
-from ..forms import MediaForm, EpisodeForm, EpisodeGenerationForm
-from ..controllers import media_controller
-from . import views_main
+from application.forms import MediaForm, EpisodeForm, EpisodeGenerationForm
+from application.controllers import media_controller
+from application.views import views_main
 
 
 @app.route('/media', methods=['GET'])
