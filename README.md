@@ -4,7 +4,7 @@ My first home project! A simple web application to track media watching.
 ## Requirements
 * Python 3.5, as well as miscellaneous packages that 
 pip3 will install on your behalf.
-* A MySQL Database defined in config.py
+* A MySQL Database with connection details defined in config.py
 
 ## Installation
 
