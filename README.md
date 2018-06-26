@@ -1,7 +1,8 @@
 MediaTracker
 ============
 
-My first home project! A simple web application to track media watching. 
+My first home project! A simple web application to track media watching.
+The MediaTracker is written for Python 3.5 
 
 Current functionality:
 ----------------------
