@@ -1,4 +1,5 @@
-from application import db, models
+from application.flask_app_and_db import db
+from application import models
 
 
 def get_all_tags():

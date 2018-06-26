@@ -1,4 +1,4 @@
-from application.__init__ import db
+from application.flask_app_and_db import db
 
 
 class Media(db.Model):
