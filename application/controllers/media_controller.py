@@ -84,7 +84,7 @@ def increment_episode(media_id):
                     return True
         else:
             # Current episode is the first one
-            media.current_episode_id = iter(media.episodes).next().id
+            media.current_episode_id = iter(media.episodes).__next__().id
             update_media(media)
             return True
     return False

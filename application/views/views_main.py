@@ -33,7 +33,7 @@ def index():
 def create_query_string(tag_id, sortcode, compressed):
     settings = {k: v for k, v in OrderedDict(selected_tag=tag_id,
                                              selected_sort=sortcode,
-                                             compressed=compressed).iteritems() if v}
+                                             compressed=compressed).items() if v}
 
     return urlencode(settings)
 
