@@ -125,7 +125,7 @@ def increment_episode(media_id):
         flash('Thanks for watching {0}!'.format(media_name))
     else:
         flash('You have just watched the last episode of {0}!'.format(media_name))
-    return redirect(url_for('index') + '?' + request.query_string)
+    return redirect(url_for('index') + '?' + str(request.query_string))
 
 
 @app.route('/media/<media_id>/episode/generate', methods=['POST'])

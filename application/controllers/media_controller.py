@@ -22,7 +22,11 @@ def get_all_media(tag_id=None, sort=None):
                       key=lambda media: (media.current_episode.episode_number if media.current_episode else 0),
                       reverse=True)
     else:  # default sort is dateModified
-        return sorted(media_list, key=lambda media: media.last_updated, reverse=True)
+        if all([media.last_updated for media in media_list]):
+            return sorted(media_list, key=lambda media: media.last_updated, reverse=True)
+        else:
+            # can't sort by dateModified because some entries appear not to have one
+            return media_list
 
 
 def get_media(media_id):
