@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='MediaTracker',
-      version='0.1',
+      version='1.10',
       description='Tracker for Media',
       author='Sarah Melanie Laura Beharry-Goss',
       install_requires=[
