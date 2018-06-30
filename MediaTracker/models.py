@@ -1,4 +1,4 @@
-from application.flask_app_and_db import db
+from MediaTracker.flask_app_and_db import db
 
 
 class Media(db.Model):

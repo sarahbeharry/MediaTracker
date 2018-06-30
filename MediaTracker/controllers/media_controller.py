@@ -1,6 +1,6 @@
-from application.flask_app_and_db import db
-from application import models
-from application.controllers import tag_controller
+from MediaTracker.flask_app_and_db import db
+from MediaTracker import models
+from MediaTracker.controllers import tag_controller
 
 
 # database i/o

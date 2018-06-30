@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
-from application.flask_app_and_db import flask_app as app
-from application import models
+from MediaTracker.flask_app_and_db import flask_app as app
+from MediaTracker import models
 from flask import render_template, redirect, flash, url_for
-from application.forms import BugEditForm
-from application.controllers import bug_controller
+from MediaTracker.forms import BugEditForm
+from MediaTracker.controllers import bug_controller
 
 
 @app.route('/bugs', methods=['GET'])

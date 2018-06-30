@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
-from application.flask_app_and_db import flask_app as app
-from application import models
+from MediaTracker.flask_app_and_db import flask_app as app
+from MediaTracker import models
 from flask import render_template, redirect, flash, url_for, request
-from application.forms import EpisodeForm, EpisodeGenerationForm
-from application.controllers import media_controller
-from application.views import views_main
+from MediaTracker.forms import EpisodeForm, EpisodeGenerationForm
+from MediaTracker.controllers import media_controller
+from MediaTracker.views import views_main
 
 
 @app.route('/media', methods=['GET'])

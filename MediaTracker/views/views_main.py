@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
-from application.flask_app_and_db import flask_app as app
-from application import models
+from MediaTracker.flask_app_and_db import flask_app as app
+from MediaTracker import models
 from flask import render_template, request
-from application.forms import MediaForm
-from application.controllers import media_controller, tag_controller
+from MediaTracker.forms import MediaForm
+from MediaTracker.controllers import media_controller, tag_controller
 
 from urllib.parse import urlencode
 from collections import OrderedDict

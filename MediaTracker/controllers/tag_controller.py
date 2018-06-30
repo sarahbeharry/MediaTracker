@@ -1,5 +1,5 @@
-from application.flask_app_and_db import db
-from application import models
+from MediaTracker.flask_app_and_db import db
+from MediaTracker import models
 
 
 def get_all_tags():
