@@ -1,0 +1,35 @@
+stages:
+  - test_install
+  - test
+  - deploy
+
+test_install_job:
+  stage: test_install
+  script:
+    - python3 -m venv venv
+    - source venv/bin/activate
+    - pip3 install setuptools --upgrade
+    - pip3 install .
+
+test_job:
+  stage: test
+  script:
+    - python3 setup.py test
+
+deploy_job:
+  stage: deploy
+  variables:
+    PROD_DIR: /var/www/MediaTracker
+  script:
+    - rm -rf $PROD_DIR/venv
+    - python3 -m venv $PROD_DIR/venv
+    - source $PROD_DIR/venv/bin/activate
+    - pip3 install setuptools --upgrade
+    - pip3 install .
+    - cp $PROD_DIR/config_for_yuki.py $PROD_DIR/MediaTracker/config.py
+    - touch $PROD_DIR/gateway.wsgi
+  environment:
+    name: production
+    url: http://yuki/MediaTracker
+  only:
+    - master
