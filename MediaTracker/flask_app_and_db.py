@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 flask_app = Flask(__name__)
-flask_app.config.from_object('config')
+flask_app.config.from_object('MediaTracker.config')
 db = SQLAlchemy(flask_app)
 
 # then import the views to apply all the app.route decorators without triggering circular import issues
