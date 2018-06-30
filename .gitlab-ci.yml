@@ -26,7 +26,7 @@ deploy_job:
     - source $PROD_DIR/venv/bin/activate
     - pip3 install setuptools --upgrade
     - pip3 install .
-    - cp $PROD_DIR/config_for_yuki.py $PROD_DIR/MediaTracker/config.py
+    - cp $PROD_DIR/config_for_yuki.py $PROD_DIR/venv/lib/python3.5/site-packages/MediaTracker/config.py
     - touch $PROD_DIR/gateway.wsgi
   environment:
     name: production
