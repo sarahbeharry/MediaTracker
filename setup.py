@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 import os
 
 
@@ -29,5 +29,5 @@ setup(name='MediaTracker',
       package_data={'': static_files + template_files},
       author_email='sarahbeharry@hotmail.com',
       license='MIT',
-      packages=['MediaTracker'],
+      packages=find_packages(),
       )
